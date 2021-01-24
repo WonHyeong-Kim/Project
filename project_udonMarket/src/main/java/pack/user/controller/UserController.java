@@ -16,7 +16,7 @@ public class UserController {
 	
 	@RequestMapping(value = "userInsert", method = RequestMethod.GET)
 	public String userJoin() {
-		return "user_insert";
+		return "userInsert";
 	}
 	
 	@RequestMapping(value = "userInsert", method = RequestMethod.POST)

@@ -27,18 +27,26 @@ public class LoginController {
 	
 	@RequestMapping(value= "login", method=RequestMethod.POST)
 	public String submitLogin(HttpSession session,
-			@RequestParam("user_id")String user_id,
-			@RequestParam("password")String password) {
-		
+			@RequestParam("user_id") String user_id,
+			@RequestParam("password") String password) {
 		//세션만들기
-		UserDto userDto = userDaoInterinter.getLoginInfo(user_id); 
+		UserDto userDto = userDaoInterinter.getLoginInfo(user_id);
+		
 		if(userDto != null) {
 			String rePassword = userDto.getPassword();
 			if(rePassword.equals(password)) { 
-				session.setAttribute("password", rePassword); 
+				session.setAttribute("password", rePassword);
+				//성공적으로 로그인하였다는 메시지 모달창 발생 필요. 메인 페이지로 접속.
+				return "redirect:/index.jsp";
+			}else {
+				//비밀번호가 틀렸다는 메시지 모달창 발생 필요. 다시 로그인 창으로 접속.
+				return "redirect:/login.jsp";
 			}
+		}else {
+			//아이디가 없다는 메시지 모달창 발생 필요. 다시 로그인 창으로 접속.
+			return "redirect:/login.jsp"; 
 		}
-		return "redirect:/index.jsp"; 
+		
 	}
 	
 	@RequestMapping("logout")

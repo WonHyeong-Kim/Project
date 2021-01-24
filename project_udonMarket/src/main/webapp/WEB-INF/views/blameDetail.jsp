@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../../top.jsp"></jsp:include>
 **신고 세부 내용
 <a href="update?blame_id=${data.blame_id }">수정</a><a href="delete?blame_id=${data.blame_id }">삭제</a><a href="reply">답글달기</a>
 <table border="1">

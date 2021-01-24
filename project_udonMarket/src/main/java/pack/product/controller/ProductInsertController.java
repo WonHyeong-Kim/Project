@@ -14,12 +14,12 @@ public class ProductInsertController {
 	@Autowired
 	private ProductDaoInter Inter;
 	
-	@RequestMapping(value="product_insert", method = RequestMethod.GET)
+	@RequestMapping(value="productInsert", method = RequestMethod.GET)
 	public String insert() {
-		return "insform";
+		return "productInsform";
 	}
 	
-	@RequestMapping(value="product_insert", method = RequestMethod.POST)
+	@RequestMapping(value="productInsert", method = RequestMethod.POST)
 	public String submit(ProductBean bean) {
 		bean.setWrite_date();
 		int newNum = Inter.product_currentNum() + 1; // 새로 작성된 글의 번호
@@ -27,7 +27,7 @@ public class ProductInsertController {
 		
 		boolean b= Inter.productInsert(bean);
 		if(b) {
-			return "redirect:/product_list?page=1";
+			return "redirect:/productList?page=1";
 		}else {
 			return "redirect:/error";
 		}

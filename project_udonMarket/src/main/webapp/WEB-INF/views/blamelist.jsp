@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../../top.jsp"></jsp:include>
 **신고 리스트<p/>
 <table border="1">
 	<tr>

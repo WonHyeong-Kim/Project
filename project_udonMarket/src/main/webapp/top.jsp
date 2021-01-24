@@ -29,7 +29,7 @@
 			<div class="headerMenu">
 				<ul>
 					<li><a href="boardList?page=1">동네생활</a></li>
-					<li><a href="productList">우리동네 상품</a></li>
+					<li><a href="productList?page=1">우리동네 상품</a></li>
 					<li><a href="location">MY LOCATION</a></li>
 				</ul>
 			</div>

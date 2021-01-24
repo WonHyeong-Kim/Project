@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../../top.jsp"></jsp:include>
 **신고하기
 <form action="blame" method="post">
 신고번호:<input type="text" name="blame_id"><br>

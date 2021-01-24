@@ -101,7 +101,7 @@
 		String str = "checked='checked'";
 		if(cookies != null){
 			for(int i=0; i<cookies.length; i++){
-				if(cookies[i].getName().equals("id")){ // id cookie를 가져와 String id에 넣는다.
+				if(cookies[i].getName().equals("user_id")){
 					id = cookies[i].getValue();
 					checked = true;
 				}
@@ -116,8 +116,8 @@
 		<div class="loginBox">
 			<h2>Member Login</h2>
 			<form name="login_frm" action="login" method="post">
-				<div class="idWrap"><img class="imgLogin" src="/udon/resources/images/login2.png"><input type="text" placeholder="Username" class="loginId" value="<%= id %>"></input></div>
-				<div class="passWrap"><img class="imgLock" src="/udon/resources/images/lock.png"><input type="password" class="loginPw"></input></div><br>
+				<div class="idWrap"><img class="imgLogin" src="/udon/resources/images/login2.png"><input type="text" name="user_id" placeholder="Username" class="loginId" value="<%= id %>"></input></div>
+				<div class="passWrap"><img class="imgLock" src="/udon/resources/images/lock.png"><input type="password" name="password" class="loginPw"></input></div><br>
 				<div class="checkWrqp"><input type="checkbox" name="id_save" id="id_save" value="T"<% if(checked==true){%>
 				<%=str %><%}%>/>&nbsp;<span class="text">아이디저장</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="userInsert" href="userInsert">회원가입</a></div><br>
 				<div class="loginWrqp"><input type="submit" class="btnLogin" value="Login"></div>
