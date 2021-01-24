@@ -51,7 +51,6 @@
 				</div>
 				<br>
 				<br>
-				<br>
 				<h4>2. 개인 정보</h4>
 				<hr class="large">
 				<!-- 성명-->
