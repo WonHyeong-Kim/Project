@@ -32,7 +32,7 @@ public class BlameController {
 		}else {
 			return "blame";
 		}
-	}
+	}//
 	@RequestMapping("blamelist")
 	public ModelAndView blameList() {// 신고 리스트 보기
 		List<BlameDto> list = dao.getBlameList();
