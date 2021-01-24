@@ -40,7 +40,7 @@
 							class="form-control" minlength="4">
 					</div>
 				</div>
-				<!-- 패스워드-->
+				<!-- 패스워드확인-->
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="passChk">패스워드 확인</label>
 					<div class="col-sm-3">
