@@ -69,6 +69,7 @@ a:hover {text-decoration: none;}
     height:100px;
     line-height: 110px;
     text-align: center;
+    margin-top:-2px;
 }
 
 .headerLogo a{
@@ -137,12 +138,12 @@ a:hover {text-decoration: none;}
 }
 
 
-.searchTownWrap{
+.searchCateWrap{
     padding-top:100px;
     height:200px;
 }
 
-.searchCateWrap{
+.searchTownWrap{
     margin-top:30px;
     padding-top:30px;
     height:200px;
@@ -250,5 +251,26 @@ a:hover {text-decoration: none;}
 .footerWrap{
     background:#95c4de;
     height:400px;
+}
+
+.footer > h1 a{
+	color:#fafafa;
+}
+
+.footerMenuUl, .footersnsUl{
+	display:block;
+	text-align:center;
+	height:60px;
+	line-height:60px;
+	
+}
+
+.footerMenuUl>li, .footersnsUl>li{
+	display:inline-block;
+	margin-right:10px;
+}
+
+.copy{
+	text-align:center;
 }
 

@@ -11,12 +11,6 @@
 		<section class="section1 w100">
 			<div class="mainVisual w1280 d_block">
 				<form action="productSearch" method="get">
-					<div class="searchTownWrap d_block center">
-						<span class="d_block ft_title bigTitle">어떤 상품을 구매하고 싶으신가요?</span>
-						<input type="text" class="searchTown" placeholder="상품 검색">
-						<input type="checkbox" name="allTown" value="allTown">
-						<span class="checkTitle">모든동네</span>
-					</div>
 					<div class="searchCateWrap d_block">
 						<span class="d_block ft_title bigTitle">어떤 종류의 상품을 구매하고 싶으신가요?</span>
 						<select name="category" id="searchCate">
@@ -39,9 +33,16 @@
 							<option value="15">삽니다</option>
 						</select>
 					</div>
+					<div class="searchTownWrap d_block center">
+						<span class="d_block ft_title bigTitle">어떤 상품을 구매하고 싶으신가요?</span>
+						<input type="text" class="searchTown" placeholder="상품 검색">
+						<input type="checkbox" name="allTown" value="allTown">
+						<span class="checkTitle">모든동네</span>
+					</div>
 					<input type="submit" class="searchBtn d_block ft_title" value="검색">
 				</form>
 			</div>
+					
 		</section>
 	</div>
 </body>

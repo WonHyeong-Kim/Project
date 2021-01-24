@@ -2,35 +2,43 @@ package pack.user.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pack.user.model.UserDaoInter;
+import pack.user.model.UserDto;
+
 @Controller
 public class LoginController {
+	@Autowired
+	private UserDaoInter userDaoInterinter;
+	
 	@RequestMapping(value="login", method= RequestMethod.GET)
 	public String login(HttpSession session) {
-		System.out.println("a");
 		if(session.getAttribute("id") == null) {
 			return "login";
 		}else {
 			return "login";
 		}
 	}
-	@RequestMapping(value="login", method= RequestMethod.POST)
-	public String loginSubmit(HttpSession session,
-			@RequestParam("id") String id,
-			@RequestParam("pwd") String pwd) {
-		if(id.equals("aa") && pwd.equals("11")) {
-			session.setAttribute("id", id); // 30분
-			// 유지시간 설정 필요.
-			System.out.println("a");
-			
-			return "redirect:/jikwonlist.jsp";
-		}else {
-			return "redirect:/login";
+	
+	@RequestMapping(value= "login", method=RequestMethod.POST)
+	public String submitLogin(HttpSession session,
+			@RequestParam("user_id")String user_id,
+			@RequestParam("password")String password) {
+		
+		//세션만들기
+		UserDto userDto = userDaoInterinter.getLoginInfo(user_id); 
+		if(userDto != null) {
+			String rePassword = userDto.getPassword();
+			if(rePassword.equals(password)) { 
+				session.setAttribute("password", rePassword); 
+			}
 		}
+		return "redirect:/index.jsp"; 
 	}
 	
 	@RequestMapping("logout")

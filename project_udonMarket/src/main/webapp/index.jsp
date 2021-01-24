@@ -29,6 +29,9 @@
 			<h2 class="ft_title center">
 				최근 등록된 상품
 			</h2>
+			<h4 class="ft_title center">
+				<a href="productList">더보기 <b></b></a> <!-- 배열 최신순서로 링크 -->
+			</h4>
 			<div class="productNew">
 				<ul class="productNewUl">
 					<c:forEach var="a" begin="1" end="8">
@@ -54,6 +57,9 @@
 			<h2 class="ft_title center">
 				우리동네 상품
 			</h2>
+			<h4 class="ft_title center">
+				<a href="productList">더보기 <b>></b></a>
+			</h4>
 
 			<div class="productNew">
 				<ul class="productNewUl">
@@ -80,6 +86,10 @@
 
 	<div class="footerWrap w100">
 		<footer class="footer w1280">
+		
+			<h1 class="headerLogo ft_title">
+				<a href="./index.jsp">우<span class="sm_title">리</span>동<span class="sm_title">네</span></a>
+			</h1>
 			<div class="footerMenuWrap">
 				<ul class="footerMenuUl">
 					<li><a href="#">회사소개</a></li>
@@ -92,10 +102,14 @@
 
 			<div class="footersnsWrap">
 				<ul class="footersnsUl">
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
+					<li><a href="#"><i class="fab fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+					<li><a href="#"><i class="fas fa-comments"></i></a></li>
 				</ul>
+			</div>
+			
+			<div class="copy">
+				<p>Copyright WooDong 2020</p>
 			</div>
 		</footer>
 	</div>

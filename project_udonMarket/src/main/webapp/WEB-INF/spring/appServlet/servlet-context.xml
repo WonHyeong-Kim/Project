@@ -22,10 +22,17 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="aa.bb.udon" />
-	<context:component-scan base-package="pack.controller" />
-	<context:component-scan base-package="pack.model" />
+	<context:component-scan base-package="pack.blame.controller" />
+	<context:component-scan base-package="pack.blame.model" />
+	<context:component-scan base-package="pack.board.controller" />
+	<context:component-scan base-package="pack.board.model" />
+	<context:component-scan base-package="pack.chat.controller" />
+	<context:component-scan base-package="pack.chat.model" />
+	<context:component-scan base-package="pack.location.controller" />
+	<context:component-scan base-package="pack.product.controller" />
+	<context:component-scan base-package="pack.product.model" />
+	<context:component-scan base-package="pack.upload" />
 	<context:component-scan base-package="pack.user.controller" />
-	
-	
+	<context:component-scan base-package="pack.user.model" />
 	
 </beans:beans>
