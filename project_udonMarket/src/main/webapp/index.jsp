@@ -23,6 +23,7 @@
 	<!-- top -->
 	<jsp:include page="./top.jsp"></jsp:include>
 	<div class="contentWrap">
+	
 		<!-- search -->
 		<jsp:include page="./search.jsp"></jsp:include>
 		<section class="section2 w1280">
