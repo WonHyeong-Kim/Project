@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>aa.bb</groupId>
-	<artifactId>udon</artifactId>
-	<name>proejct_udonMarket</name>
+	<artifactId>cc</artifactId>
+	<name>sprweb18_json</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
