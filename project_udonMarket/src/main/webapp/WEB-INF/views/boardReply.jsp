@@ -52,7 +52,7 @@
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
 	  		<input type="button" value="작성" id="btnReply">
-	  		<input type="button" value="목록" onclick="location.href='list?page=${page}'">
+	  		<input type="button" value="목록" onclick="location.href='boardList?page=${page}'">
 	  	</td>
 	  </tr>
 	</table>

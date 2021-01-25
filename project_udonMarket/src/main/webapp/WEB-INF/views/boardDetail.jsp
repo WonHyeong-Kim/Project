@@ -30,23 +30,23 @@
   <tr>
   	<td></td>
   	<td style="text-align: right;">
-  		<a href="reply?board_no=${data.board_no}&page=${page}">
+  		<a href="boardReply?board_no=${data.board_no}&page=${page}">
   			<img src="./resources/images/reply.gif" />
   		</a>
   		<%
   			//AOP login check - 로그인상태인 경우에만 수정,삭제버튼 show
   		%>
-  		<a href="update?board_no=${data.board_no}&page=${page}">
+  		<a href="boardUpdate?board_no=${data.board_no}&page=${page}">
   			<img src="./resources/images/edit.gif" />
   		</a>
   		<!-- 
   		<button id="btnDel"><img src="./resources/images/del.gif" /></button>
   		 -->
-  		<a href="delete?board_no=${data.board_no}&page=${page}">
+  		<a href="boardDelete?board_no=${data.board_no}&page=${page}">
   			<img src="./resources/images/del.gif" />
   		</a>
   		
-  		<a href="list?page=${page}">
+  		<a href="boardList?page=${page}">
   			<img src="./resources/images/list.gif" />
   		</a>
   	</td>
