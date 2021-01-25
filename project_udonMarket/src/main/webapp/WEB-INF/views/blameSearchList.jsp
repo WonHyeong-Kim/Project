@@ -9,7 +9,7 @@
 </head>
 <body>
 <jsp:include page="../../top.jsp"></jsp:include>
-**신고 리스트<p/>
+**검색 리스트<p/>
 <table border="1">
 	<tr>
 		<th>신고번호</th><th>상품번호</th><th>사용자아이디</th><th>신고내용</th><th>신고이유</th><th>등록날짜</th>
@@ -25,9 +25,6 @@
 		</c:forEach>
 	</tr>
 </table>
-<c:forEach var="p" begin="1" end="${totalPage }">
-	 <a href="blamelist?page=${p}">${p }</a>
-</c:forEach>
 <form action="blameSearch" method="post">
 	<input type="hidden" name="page" value="${page}">
 	<select name="searchName">

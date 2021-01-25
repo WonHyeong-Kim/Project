@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,25 +26,25 @@
 			  </tr>
 			</table>
 			<div class="productNew">
-				<ul class="productNewUl">
-					<c:forEach var="p" items="${data}">
-						<li>
-							<a href="productDetail?product_id=${p.product_id}&page=${page}">
-								<div class="productImg">
-									<img src="/udon/resource/images/${p.product_image}.png" alt="사진">
-								</div>
-								<dl>
-									<dt class="productName">${p.product_title}</dt>
-									<dd class="memAddress d_inblock">조회수 : ${p.views} / </dd>
-									<dd class="memname d_inblock">작성자 : ${p.user_id}</dd>
-									<dd class="price">${p.product_price}원</dd>
-								</dl>
-							</a>
-						</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</section>
+					<ul class="productNewUl">
+						<c:forEach var="p" items="${data}">
+							<li>
+								<a href="product_detail?product_id=${p.product_id}&page=${page}">
+									<div class="productImg">
+										<img src="/udon/resource/images/${p.product_image}.png" alt="사진">
+									</div>
+									<dl>
+										<dt class="productName">${p.product_title}</dt>
+										<dt class="memAddress d_inblock">위치</dt>
+										<dt class="memname d_inblock">${p.user_id}</dt>
+										<dt class="price">${p.product_price}원</dt>
+									</dl>
+								</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</section>
 	</div>
 </body>
 </html>

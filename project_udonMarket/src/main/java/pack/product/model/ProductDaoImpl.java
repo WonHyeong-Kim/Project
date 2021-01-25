@@ -1,6 +1,7 @@
 package pack.product.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pack.product.controller.ProductBean;
+import pack.product.controller.SearchBean;
 
 
 @Repository
@@ -98,6 +100,12 @@ public class ProductDaoImpl extends SqlSessionDaoSupport implements ProductDaoIn
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<ProductDto> getProductSearchByCategory(SearchBean bean) {
+		List<ProductDto> list = getSqlSession().selectList("searchByCategory", bean);
+		return list;
 	}
 
 }

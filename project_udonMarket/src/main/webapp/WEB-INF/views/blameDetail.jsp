@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="../../top.jsp"></jsp:include>
 **신고 세부 내용
-<a href="update?blame_id=${data.blame_id }">수정</a><a href="delete?blame_id=${data.blame_id }">삭제</a><a href="reply">답글달기</a>
+<a href="blameUpdate?blame_id=${data.blame_id }&page=${page}">수정</a><a href="blameDelete?blame_id=${data.blame_id }&page=${page}">삭제</a><a href="blameReply">답글달기</a>
 <table border="1">
 	<tr>
 		<td >신고번호:${data.blame_id }</td><td>상품번호:${data.product_id }</td><td>사용자ID:${data.user_id }</td>

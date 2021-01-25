@@ -16,5 +16,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  <mappers>
   <mapper resource="pack/mybatis/DataMapper.xml" />
   <mapper resource="pack/mybatis/DataMapper_blame.xml" />
+  <mapper resource="pack/mybatis/DataMapper_searchProduct.xml" />
  </mappers>
 </configuration>

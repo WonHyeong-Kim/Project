@@ -13,9 +13,8 @@
 				<form action="productSearch" method="get">
 					<div class="searchCateWrap d_block">
 						<span class="d_block ft_title bigTitle">어떤 종류의 상품을 구매하고 싶으신가요?</span>
-						<select name="category" id="searchCate">
+						<select name="category_id" id="searchCate">
 							<option value="0">카테고리를 선택하세요</option>
-							<option value="0">모두보기</option>
 							<option value="1">디지털/가전</option>
 							<option value="2">가구/인테리어</option>
 							<option value="3">아동/유아도서</option>
@@ -30,16 +29,13 @@
 							<option value="12">도서/티켓/음반</option>
 							<option value="13">식물</option>
 							<option value="14">기타 중고물품</option>
-							<option value="15">삽니다</option>
 						</select>
 					</div>
 					<div class="searchTownWrap d_block center">
 						<span class="d_block ft_title bigTitle">어떤 상품을 구매하고 싶으신가요?</span>
-						<input type="text" class="searchTown" placeholder="상품 검색">
-						<!-- 
+						<input type="text" name="product_title" class="searchTown" placeholder="상품 검색">
 						<input type="checkbox" name="allTown" value="allTown">
 						<span class="checkTitle">모든동네</span>
-						 -->
 					</div>
 					<input type="submit" class="searchBtn d_block ft_title" value="검색">
 				</form>

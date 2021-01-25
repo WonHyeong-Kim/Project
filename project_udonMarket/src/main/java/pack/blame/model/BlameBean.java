@@ -5,6 +5,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BlameBean {
 	private String blame_id, product_id,user_id,declaration_detail,declaration_reason,blame_date;
+	private String searchName, searchValue;
+
+	public String getSearchName() {
+		return searchName;
+	}
+
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
 
 	public String getBlame_id() {
 		return blame_id;

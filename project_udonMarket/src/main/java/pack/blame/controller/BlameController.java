@@ -28,46 +28,80 @@ public class BlameController {
 		boolean success = dao.insertBlame(bean);
 		
 		if(success) {
-			return "redirect:/blamelist";
+			return "redirect:/blamelist?page=1";
 		}else {
 			return "blame";
 		}
-	}/////////
+	}
 	@RequestMapping("blamelist")
-	public ModelAndView blameList() {// 신고 리스트 보기
-		List<BlameDto> list = dao.getBlameList();
+	public ModelAndView blameList(@RequestParam("page") String page) {// 신고 리스트 보기
+		List<BlameDto> list1 = dao.getBlameList();
+		List<BlameDto> list = dao.blamePageList(page);
 		ModelAndView view = new ModelAndView();
 		view.addObject("list", list);
+		int totalPageNum = (int) Math.ceil(list1.size()/10.0);
+		//System.out.println(list1.size()/10.0);
+		view.addObject("totalPage", totalPageNum);
+		view.addObject("page", page);
 		view.setViewName("blamelist");
 		
 		return view;
 	}
-	
-	@RequestMapping("detail")
-	public ModelAndView blameDetail(@RequestParam("blame_id") String blame_id) {//신고 정보 보기
+	@RequestMapping("blameSearch")
+	public ModelAndView searchBlame(@RequestParam("page") String page,
+			BlameBean bean) {
+		ModelAndView view = new ModelAndView();
+		List<BlameDto> list = dao.search(bean,page);
+		if(list==null) {
+			view.addObject("page", page);
+			view.setViewName("blamelist");
+			return view;
+		}else {
+			System.out.println(list.size());
+			view.addObject("list", list);
+			view.addObject("page", page);
+			view.setViewName("blameSearchList");
+			return view;
+		}
+	}
+	@RequestMapping("blameDetail")
+	public ModelAndView blameDetail(@RequestParam("blame_id") String blame_id,
+			@RequestParam("page") String page) {//신고 정보 보기
 		BlameDto dto = dao.blameOne(blame_id);
 		ModelAndView view = new ModelAndView();
 		view.setViewName("blameDetail");
+		view.addObject("page", page);
 		view.addObject("data", dto);
 		return view;
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView blameUpdate(@RequestParam("blame_id") String blame_id) {
+	@RequestMapping(value = "blameUpdate", method = RequestMethod.GET)
+	public ModelAndView blameUpdate(@RequestParam("blame_id") String blame_id,
+			@RequestParam("page") String page) {
 		BlameDto dto = dao.blameOne(blame_id);
 		ModelAndView view = new ModelAndView();
 		view.addObject("data", dto);
-		view.setViewName("updateform");
+		view.addObject("page", page);
+		view.setViewName("blameUpdateForm");
 		return view;
 	}
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String blameUpdateResult(BlameBean bean) {
+	@RequestMapping(value = "blameUpdate", method = RequestMethod.POST)
+	public String blameUpdateResult(BlameBean bean, @RequestParam("page") String page) {
 		boolean success = dao.updateBlame(bean);
 		
 		if(success) {
-			return "redirect:/blamelist";
+			return "redirect:/blamelist?page="+page;
 		}else {
 			return "updateform";
+		}
+	}
+	@RequestMapping("blameDelete")
+	public String blameDelete(@RequestParam("blame_id")String blame_id, @RequestParam("page") String page) {
+		boolean success = dao.deleteBlame(blame_id);
+		if(success) {
+			return "redirect:/blamelist?page="+page;
+		}else {
+			return "blameDetail";
 		}
 	}
 }

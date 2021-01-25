@@ -13,16 +13,16 @@ public class ProductDetailController {
 	@Autowired
 	private ProductDaoInter inter;
 	
-	@RequestMapping("productDetail")
-	public ModelAndView detailProcess(@RequestParam("product_id") int product_id,
+	@RequestMapping("product_detail")
+	public ModelAndView detailProcess(@RequestParam("product_id") String product_id,
 			@RequestParam("page") String page) {
 		
 		// 조회수 증가 작업 선행
-		boolean b = inter.product_updateViews(product_id);
+		boolean b = inter.product_updateViews(Integer.parseInt(product_id));
 		
 		// 상세보기 진행 후 jsp로 출력
 		ModelAndView view = new ModelAndView("product_detail");
-		view.addObject("data", inter.getProductDetail(product_id));
+		view.addObject("data", inter.getProductDetail(Integer.parseInt(product_id)));
 		view.addObject("page", page);
 		return view;
 	}

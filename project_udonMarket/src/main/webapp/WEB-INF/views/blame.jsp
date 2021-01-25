@@ -9,6 +9,7 @@
 <body>
 <jsp:include page="../../top.jsp"></jsp:include>
 **신고하기
+<a href="blamelist?page=1">신고목록보기</a>
 <form action="blame" method="post">
 신고번호:<input type="text" name="blame_id"><br>
 상품번호:<input type="text" name="product_id"><br>
