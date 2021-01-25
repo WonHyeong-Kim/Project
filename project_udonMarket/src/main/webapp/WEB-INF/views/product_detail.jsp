@@ -30,19 +30,19 @@
   <tr>
   	<td></td>
   	<td style="text-align: right;">
-  		<a href="reply?board_no=${data.board_no}&page=${page}">
+  		<a href="reply?product_id=${data.product_id}&page=${page}">
   			<img src="./resources/images/reply.gif" />
   		</a>
   		<%
   			//AOP login check - 로그인상태인 경우에만 수정,삭제버튼 show
   		%>
-  		<a href="update?board_no=${data.board_no}&page=${page}">
+  		<a href="update?product_id=${data.product_id}&page=${page}">
   			<img src="./resources/images/edit.gif" />
   		</a>
   		<!-- 
   		<button id="btnDel"><img src="./resources/images/del.gif" /></button>
   		 -->
-  		<a href="delete?board_no=${data.board_no}&page=${page}">
+  		<a href="delete?product_id=${data.product_id}&page=${page}">
   			<img src="./resources/images/del.gif" />
   		</a>
   		
@@ -58,16 +58,16 @@
   	<td>
   		작성자 : <!-- <a href="판매자가 쓴 글 목록"> -->${data.user_id}<!-- </a> -->
   	</td>
-  	<td>작성일 : ${data.board_wrt_date}</td>
+  	<td>작성일 : ${data.update_date}</td>
   	<td>조회수 : ${data.views}</td>
   </tr>
   <tr>
-  	<td colspan="3">제목 : ${data.board_title}</td>
+  	<td colspan="3">제목 : ${data.product_title}</td>
   </tr>
   <tr>
   	<td colspan="3">
   		<textarea rows="5" readonly="readonly" style="width:99%">
-  			${data.board_content}
+  			${data.product_content}
   		</textarea>
   	</td>
   </tr>

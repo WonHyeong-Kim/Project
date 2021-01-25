@@ -24,7 +24,7 @@ public class ProductInsertController {
 		bean.setWrite_date();
 		int newNum = Inter.product_currentNum() + 1; // 새로 작성된 글의 번호
 		bean.setProduct_id(newNum);
-		
+		bean.setUpdate_date();
 		boolean b= Inter.productInsert(bean);
 		if(b) {
 			return "redirect:/productList?page=1";
