@@ -13,7 +13,7 @@ public class ProductDetailController {
 	@Autowired
 	private ProductDaoInter inter;
 	
-	@RequestMapping("product_detail")
+	@RequestMapping("productDetail")
 	public ModelAndView detailProcess(@RequestParam("product_id") int product_id,
 			@RequestParam("page") String page) {
 		

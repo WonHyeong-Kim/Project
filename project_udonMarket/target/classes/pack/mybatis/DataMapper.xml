@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <insert id="insertProductData" parameterType="product_formBean">
 	 	insert into product 
 	 	values(#{product_id},#{user_id},#{category_id},#{product_title},
-	 	#{write_date},#{update_date},#{product_image},0,0,0,#{product_content})
+	 	#{write_date}, #{product_price}, #{update_date},#{product_image},0,0,0,#{product_content})
 	 </insert>
 	 
 	 <update id="updateProductData" parameterType="product_formBean">
