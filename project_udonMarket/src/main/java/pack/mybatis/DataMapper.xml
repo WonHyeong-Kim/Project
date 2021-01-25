@@ -133,6 +133,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectLoginData" resultType="userDto" parameterType="String">
 		select user_id, password
 		from user
-		where user_id = #{user_id}
+		where user_id = #{user_id} and password = #{password}
 	</select>
 </mapper>
