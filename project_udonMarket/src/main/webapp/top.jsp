@@ -1,3 +1,4 @@
+<%@page import="pack.user.model.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +20,7 @@
 	<!-- resource -->
 	<script src='/udon/resources/js/main.js'></script>
 	<link href='/udon/resources/css/basic.css' rel='stylesheet'>
+	<% UserDto user = (UserDto) session.getAttribute("userDto");  %> <!-- session처리  -->
 </head>
 <body>
 	<div class="headerWrap w100">
@@ -35,8 +37,13 @@
 			</div>
 			<div class="headerRightWrap">
 				<ul class="headerRightUl">
-					<li><a href="blame">신고하기</a></li>
+				<li><a href="blame">신고하기</a></li>
+					<%if(user == null){ %> <!-- 유저가 없으면 로그인 창이, 있으면 로그아웃 창이 뜸 -->
 					<li><a href="login">LOG-IN</a></li>
+					<%} else{ %>
+					<li><%=user.getUser_id() %>님 반갑습니다.</li>
+					<li><a href="logout">LOG-OUT</a>
+					<%} %>
 					<li><a href="userInsert">회원가입</a></li>
 					<li><a href="userInfo"><i class="fas fa-user"></i></a></li>
 					<li><a href="chat"><i class="fas fa-comments"></i></a></li>
