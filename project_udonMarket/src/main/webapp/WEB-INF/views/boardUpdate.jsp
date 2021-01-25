@@ -34,7 +34,7 @@
 		(function msg(){
 			alert("${msg}");
 		})();
-		location.href="boardList?page=${page}";
+		location.href="list?page=${page}";
 	</script>
 </c:if>
 <div class="container">
@@ -57,7 +57,7 @@
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
 	  		<input type="button" value="수정" id="btnUp">
-	  		<input type="button" value="목록" onclick="location.href='boardList?page=${page}'">
+	  		<input type="button" value="목록" onclick="location.href='list?page=${page}'">
 	  	</td>
 	  </tr>
 	</table>

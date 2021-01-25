@@ -34,8 +34,10 @@
 					<div class="searchTownWrap d_block center">
 						<span class="d_block ft_title bigTitle">어떤 상품을 구매하고 싶으신가요?</span>
 						<input type="text" name="product_title" class="searchTown" placeholder="상품 검색">
+						<!-- 
 						<input type="checkbox" name="allTown" value="allTown">
 						<span class="checkTitle">모든동네</span>
+						 -->
 					</div>
 					<input type="submit" class="searchBtn d_block ft_title" value="검색">
 				</form>

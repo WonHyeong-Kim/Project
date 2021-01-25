@@ -48,7 +48,7 @@
   		<input type="button" value="등록" id="btnIns">
   		<input type="hidden" name="user_id" value="${data.user_id}">
   		<!-- <input type="button" value="등록" onclick="checkData()"> -->
-  		<input type="button" value="목록" onclick="location.href='boardList?page=1'">
+  		<input type="button" value="목록" onclick="location.href='list?page=1'">
   	</td>
   </tr>
 </table>

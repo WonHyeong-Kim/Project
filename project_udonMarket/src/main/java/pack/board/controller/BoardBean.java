@@ -1,7 +1,7 @@
 package pack.board.controller;
 
 import java.util.Calendar;
- 
+
 public class BoardBean {
 	private String user_id,board_title,board_content,board_wrt_date;
 	private int board_no,views,group_number,order_number,indent;

@@ -28,10 +28,6 @@
 		myform.pass.focus();
 		return;
 	} 
-	if(myform.password.value != myform.passChk.value ){
-		alert("비밀번호가 일치하지 않습니다. 확인해주세요!");
-		myform.pass.focus();
-	}
 	
 	
 	myform.submit();

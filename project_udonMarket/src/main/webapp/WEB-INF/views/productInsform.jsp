@@ -28,6 +28,10 @@
 			}
 			frm.submit();
 		}
+		
+		function uploadImage(){
+			mypopup=window.open("/udon/imagePopup.jsp","mywin","width=500, height=300,top=100, toolbar=yes,state=yes");
+		}
 	</script>
 </head>
 <body>
@@ -40,12 +44,14 @@
 	<jsp:include page="../../top.jsp"></jsp:include>
 	<div class="container">
 		<h4 style="text-align: center;">* 게시물 등록</h4>
-		<form action="productInsert" method="post" name="frm">
+		<form action="productInsert" method="post" name="frm" enctype="multipart/form-data">
 		<input type="hidden" name="user_id" value="aaa">
 		<table  class="table" style="width: 80%">
 			<tr>
 		  		<td>이미지 업로드</td>
-		  		<td><input type="file" name="product_image"></td>
+		  		<td>
+		  			<input type="file" value="사진 업로드" name="uploadFile">
+		  		</td>
 			</tr>
 			<tr>
 			<tr>
@@ -57,6 +63,7 @@
 			  	<td>
 			  		<select name="category_id" id="searchCate">
 						<option value="0">카테고리를 선택하세요</option>
+						<option value="0">모두보기</option>
 						<option value="1">디지털/가전</option>
 						<option value="2">가구/인테리어</option>
 						<option value="3">아동/유아도서</option>
@@ -71,6 +78,7 @@
 						<option value="12">도서/티켓/음반</option>
 						<option value="13">식물</option>
 						<option value="14">기타 중고물품</option>
+						<option value="15">삽니다</option>
 					</select>
 			  	</td>
 		  	</tr>
@@ -86,10 +94,10 @@
 		  </tr>
 		  <tr>
 		  	<td colspan="2" style="text-align: center;">
-		  		<%-- <input type="hidden" name="bip" value="<%=request.getRemoteAddr()%>"> --%>
+		  		<input type="hidden" name="bip" value="<%=request.getRemoteAddr()%>">
 		  		<input type="button" value="등록" id="btnIns">
 		  		<!-- <input type="button" value="등록" onclick="checkData()"> -->
-		  		<input type="button" value="목록" onclick="location.href='list?page=1'">
+		  		<input type="button" value="목록" id="a" onclick="location.href='list?page=1'">
 		  	</td>
 		  </tr>
 		</table>
