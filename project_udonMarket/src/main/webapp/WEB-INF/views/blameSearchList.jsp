@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>우동 | 신고하기</title>
 </head>
 <body>
-<jsp:include page="../../top.jsp"></jsp:include>
+<jsp:include page="./top.jsp"></jsp:include>
 **검색 리스트<p/>
 <table border="1">
 	<tr>
@@ -35,5 +35,6 @@
 	<input type="text" name="searchValue" placeholder="검색내용을 입력하세요."/><br>
 	<input type="submit" value="검색" />
 </form>
+<jsp:include page="./bottom.jsp"></jsp:include>
 </body>
 </html>

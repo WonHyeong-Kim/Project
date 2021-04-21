@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class ProductBean {
 	private String user_id,product_title,write_date,update_date,product_image,product_content;
-	private int product_id,category_id,product_price,product_status,views,interest_count;
+	private int product_id,category_id,product_price,product_status,views;
 	private String searchName_Product, searchValue_Product;
 	
 	public void setWrite_date() {
@@ -131,12 +131,6 @@ public class ProductBean {
 		this.views = views;
 	}
 
-	public int getInterest_count() {
-		return interest_count;
-	}
 
-	public void setInterest_count(int interest_count) {
-		this.interest_count = interest_count;
-	}
 	
 }

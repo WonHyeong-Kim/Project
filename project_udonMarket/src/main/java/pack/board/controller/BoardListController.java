@@ -18,7 +18,7 @@ public class BoardListController {
 	private BoardDaoInter boardInter;
 	
 	private int tot; // 전체 레코드 수
-	private int plist=5; // 한 페이지 당 행의 수
+	private int plist=10; // 한 페이지 당 행의 수
 	private int pageCount; // 전체 페이지 수
 	
 	public ArrayList<BoardDto> getListData(ArrayList<BoardDto> list, int page){

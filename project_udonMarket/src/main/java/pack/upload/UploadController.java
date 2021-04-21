@@ -2,18 +2,17 @@ package pack.upload;
 
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UploadController {
@@ -29,18 +28,49 @@ public class UploadController {
 	}
 	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public ModelAndView fileSubmit(
-			@ModelAttribute("uploadFile") UploadFile uploadFile,
-			BindingResult result
-								) {
+	public void fileSubmit(MultipartFile[] uploadFile) {
+	//public ModelAndView fileSubmit(@ModelAttribute("uploadFile") UploadFile uploadFile,
+			//BindingResult result) {
+		String path = UploadController.class.getResource("").getPath();
+
+		//String uploadPath ="/";
+		//String a =System.getProperty("user.dir");
+		//System.out.println(a);
+		//System.out.println(uploadPath);
+		
+		String uploadPath ="C:\\Users\\wonh\\git\\Project\\project_udonMarket\\src\\main\\webapp\\resources\\upload";
+		for(MultipartFile mul : uploadFile) {
+			System.out.println(mul.getOriginalFilename()); // 파일명
+			System.out.println(mul.getSize());
+			
+			String uploadFileName = mul.getOriginalFilename();
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") +1 );
+			File saveFile = new File(uploadPath, uploadFileName);
+			System.out.println(saveFile.getAbsolutePath()); 
+			//File saveFile = new File(uploadPath, mul.getOriginalFilename());
+			try {
+				mul.transferTo(saveFile); // 파일저장
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
 		InputStream inputStream = null;
 		OutputStream outputStream = null; 
-		System.out.println("a");
+		System.out.println("upload");
+		
+		
+		
+		
+		
+		/*
 		//업로드된 파일에 대한 에러 검사
-		MultipartFile file = uploadFile.getFile();
-		fileValidator.validate(uploadFile, result);
+		//MultipartFile file = uploadFile.getFile();
+		//fileValidator.validate(uploadFile, result);
 				
-		String fileName = file.getOriginalFilename();
+		//String fileName = file.getOriginalFilename();
 		if(result.hasErrors()) { 
 			return new ModelAndView("insform");
 		}
@@ -67,6 +97,7 @@ public class UploadController {
 			} catch (Exception e2) {
 			}
 		}
-		return new ModelAndView("detail", "filename", fileName);
+		*/
+		//return new ModelAndView("detail"/* , "filename", fileName */);
 	}
 }

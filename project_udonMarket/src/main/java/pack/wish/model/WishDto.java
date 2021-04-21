@@ -1,6 +1,6 @@
 package pack.wish.model;
 
-public class WishDto {
+public class WishDto{
 	private String wish_id;
 	private String like_check;
 	private String product_id;

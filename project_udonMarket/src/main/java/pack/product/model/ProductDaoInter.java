@@ -8,6 +8,7 @@ import pack.product.controller.SearchBean;
 
 public interface ProductDaoInter {
 	ArrayList<ProductDto> getProductList();
+	ArrayList<ProductDto> getSellingProductList();
 	ArrayList<ProductDto> getProductSearch(ProductBean bean);
 	boolean productInsert(ProductBean bean);
 	ProductDto getProductDetail(int product_id);

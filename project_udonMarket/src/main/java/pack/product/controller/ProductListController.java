@@ -1,24 +1,34 @@
 package pack.product.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import pack.location.model.LocationDao;
+import pack.product.model.ProductComparator;
 import pack.product.model.ProductDaoInter;
 import pack.product.model.ProductDto;
+import pack.user.model.UserDto;
 
 @Controller
 public class ProductListController {
 	@Autowired
 	private ProductDaoInter Inter;
 	
+	@Autowired
+	private LocationDao locationDao;
+	
 	private int totalCount; // 전체 레코드 수
-	private int countPerPage=5; // 한 페이지 당 행의 수
+	private int countPerPage=8; // 한 페이지 당 행의 수
 	private int pageCount; // 전체 페이지 수
 	
 	public ArrayList<ProductDto> getListData(ArrayList<ProductDto> list, int page){
@@ -35,7 +45,6 @@ public class ProductListController {
 		for(int i=0; i<size;i++) {
 			result.add(i, list.get(start + i));
 		}
-		
 		return result;
 	}
 	
@@ -45,6 +54,7 @@ public class ProductListController {
 		
 		return pageCount;
 	}
+	
 	@RequestMapping("productList")
 	public Model process(Model model, HttpServletRequest request) {
 		int page =0;
@@ -61,6 +71,55 @@ public class ProductListController {
 		model.addAttribute("pageCount",getPageCount());
 		model.addAttribute("page",page);
 		//model.addAttribute("data",list); // 페이징 없이 작업할 경우
+		
+		//////////////////////////////////////////////////////
+		// 위치 값 불러오기
+		HttpSession session = request.getSession();
+		UserDto userDto = (UserDto)session.getAttribute("userDto");
+		if(userDto != null) {
+			String user_id = userDto.getUser_id();
+			String location = locationDao.search_location(user_id);
+			if(null != location) {
+				String[] split_loc = location.split(" ");
+				location = split_loc[split_loc.length-1];
+			}
+			model.addAttribute("location", location);
+			System.out.println(location);
+		}
+		//////////////////////////////////////////////////////
 		return model;
+	}
+	
+	@RequestMapping("productListSort")
+	public ModelAndView processSort(ModelAndView view, HttpServletRequest request,
+			@RequestParam("order_by")String order_by) {
+		int page =0;
+		try {
+			page=Integer.parseInt(request.getParameter("page"));
+		} catch (Exception e) {
+			page = 1;
+		}
+		if(page <= 0) page = 1;
+		totalCount = Inter.product_totalCnt();
+		//거래완료 안보기
+		ArrayList<ProductDto> list = new ArrayList<ProductDto>();
+		if(order_by.equals("selling")) {
+			list = Inter.getSellingProductList();
+			view.addObject("checked","checked");  //거래완료 안보기 체크
+		}else {
+			list = Inter.getProductList();
+		}
+		//정렬기준 처리
+		ProductComparator com = new ProductComparator();
+		com.order_by = order_by;
+		Collections.sort(list,com);
+		
+		ArrayList<ProductDto> result = getListData(list, page);
+		view.addObject("data",result);
+		view.addObject("pageCount",getPageCount());
+		view.addObject("page",page);
+		view.setViewName("productList");
+		
+		return view;
 	}
 }

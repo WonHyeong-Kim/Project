@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<title>우동마켓</title>
 </head>
 <body>
 	<div class="contentWrap">
 		<section class="section1 w100">
 			<div class="mainVisual w1280 d_block">
-				<form action="productSearch" method="get">
+				<form id="productSearch" action="productSearch" method="get">
 					<div class="searchCateWrap d_block">
 						<span class="d_block ft_title bigTitle">어떤 종류의 상품을 구매하고 싶으신가요?</span>
 						<select name="category_id" id="searchCate">
@@ -33,17 +34,31 @@
 					</div>
 					<div class="searchTownWrap d_block center">
 						<span class="d_block ft_title bigTitle">어떤 상품을 구매하고 싶으신가요?</span>
-						<input type="text" name="product_title" class="searchTown" placeholder="상품 검색">
+						<input id="searchValue" type="text" name="product_title" class="searchTown" placeholder="상품 검색">
 						<!-- 
 						<input type="checkbox" name="allTown" value="allTown">
 						<span class="checkTitle">모든동네</span>
 						 -->
 					</div>
-					<input type="submit" class="searchBtn d_block ft_title" value="검색">
+					<button type="button" id="searchSubmit" class="searchBtn d_block ft_title">검색</button>
 				</form>
 			</div>
 					
 		</section>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#searchSubmit").click(function() {
+				var value = $("#searchCate").val();
+				if(value==0){
+					alert("카테고리를 지정하지 않으셨습니다.");
+					$("#searchCate").focus();
+				}else{
+					$("#productSearch").submit();
+				}
+				
+			})
+		})
+	</script>
 </body>
 </html>

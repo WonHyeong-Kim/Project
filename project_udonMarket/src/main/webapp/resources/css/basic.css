@@ -19,6 +19,9 @@ a:link {text-decoration: none;}
 a:visited {text-decoration: none;}
 a:hover {text-decoration: none;}
 
+a{
+	color:#333;
+}
 .w100{
     width:100%;
 }
@@ -216,12 +219,13 @@ a:hover {text-decoration: none;}
     border-radius: 10px;
 }
 
-.productImg{
+.productImg, .productImg>img{
     width:95%;
     height:300px;
     margin:auto;
     padding:10px;
 }
+
 
 .productImg img{
     width:100%;

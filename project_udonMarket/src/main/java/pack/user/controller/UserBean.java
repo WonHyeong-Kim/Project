@@ -1,7 +1,17 @@
 package pack.user.controller;
 
 public class UserBean {
-	private String user_id, password, user_name, profile_image, user_addr;
+	private String user_id, password, user_name, profile_image, user_addr, afterPassword;
+
+	
+
+	public String getAfterPassword() {
+		return afterPassword;
+	}
+
+	public void setAfterPassword(String afterPassword) {
+		this.afterPassword = afterPassword;
+	}
 
 	public String getUser_id() {
 		return user_id;

@@ -37,7 +37,7 @@ public class BoardUpdateController {
 			boolean b = inter.update(bean);
 			if(b) {
 				//view.setViewName("redirect:/list?page="+page);
-				view.setViewName("redirect:/boardDetail?num="+bean.getBoard_no()+"&page="+page);
+				view.setViewName("redirect:/boardDetail?board_no="+bean.getBoard_no()+"&page="+page);
 			}else {
 				view.setViewName("redirect:/boardError");
 			}

@@ -2,6 +2,8 @@ package pack.blame.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +26,15 @@ public class BlameController {
 		return "blame";
 	}
 	@RequestMapping(value = "blame", method = RequestMethod.POST)// 신고 입력 처리
-	public String blameInsert(BlameBean bean) {
+	public String blameInsert(BlameBean bean, HttpServletRequest request) {
+		BlameDto dto = dao.getMaxBoard();
+		System.out.println(dto.getCurrentBoard());
+		String boardNum = String.valueOf(Integer.parseInt(dto.getCurrentBoard())+1);
+		bean.setBlame_id(boardNum);
 		boolean success = dao.insertBlame(bean);
 		
 		if(success) {
-			return "redirect:/blamelist?page=1";
+			return "redirect:/home?loginCheck=1";
 		}else {
 			return "blame";
 		}

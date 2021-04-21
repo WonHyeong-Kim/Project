@@ -60,6 +60,9 @@ public class BlameDao extends SqlSessionDaoSupport{
 			return false;
 		}
 	}
+	public BlameDto getMaxBoard() {
+		return getSqlSession().selectOne("getMaxBoard");
+	}
 	
 	public boolean updateBlame(BlameBean bean) {
 		int result = getSqlSession().update("updateBlame", bean);

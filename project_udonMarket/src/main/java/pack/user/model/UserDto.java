@@ -1,7 +1,10 @@
 package pack.user.model;
 
+import java.sql.Date;
+
 public class UserDto {
 	private String user_id, password, user_name, profile_image, user_addr;
+
 
 	public String getUser_id() {
 		return user_id;

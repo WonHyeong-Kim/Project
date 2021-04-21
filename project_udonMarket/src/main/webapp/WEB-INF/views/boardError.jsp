@@ -11,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="../../top.jsp"></jsp:include>
+	<jsp:include page="./top.jsp"></jsp:include>
 	<div class="container">
 		<table class="table">
 			<tr style="text-align: center;">
@@ -21,5 +21,6 @@
 			</tr>
 		</table>
 	</div>
+	<jsp:include page="./bottom.jsp"></jsp:include>
 </body>
 </html>

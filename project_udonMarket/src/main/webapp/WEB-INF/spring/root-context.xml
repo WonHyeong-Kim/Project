@@ -23,8 +23,14 @@
 	</bean>
 	
 	<!-- 어노테이션 사용 -->
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="chatAnnoInter" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="pack.chat.model.ChatAnnoInter"/>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 어노테이션 사용 -->
+	<bean id="locationAnnoInter" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="pack.location.model.LocationAnnoInter"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 </beans>

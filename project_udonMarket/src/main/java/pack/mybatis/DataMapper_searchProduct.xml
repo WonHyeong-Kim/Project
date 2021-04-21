@@ -6,6 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchByCategory" parameterType="pack.product.controller.SearchBean" resultType="product_dto">
 		SELECT p.product_title, p.product_id, p.product_image, p.product_price, p.user_id 
 		FROM category c, product p 
-		WHERE c.category_id = p.category_id AND c.category_id=#{category_id} AND p.product_title LIKE CONCAT('%',#{product_title},'%');
+		WHERE c.category_id = p.category_id AND c.category_id=#{category_id} AND p.product_title LIKE CONCAT('%',#{product_title},'%')
 	</select>
 </mapper>

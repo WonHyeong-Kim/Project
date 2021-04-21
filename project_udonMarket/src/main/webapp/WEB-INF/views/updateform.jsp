@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>우동 | 신고하기</title>
 </head>
 <body>
+	<jsp:include page="./top.jsp"></jsp:include>
 	<form action="update" method="post">
 		<table border="1">
 			<tr>
@@ -36,5 +37,6 @@
 			</tr>
 		</table>
 	</form>
+	<jsp:include page="./bottom.jsp"></jsp:include>
 </body>
 </html>

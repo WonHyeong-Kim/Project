@@ -2,9 +2,15 @@ package pack.product.model;
 
 import java.util.Calendar;
 
-public class ProductDto {
+public class ProductDto implements Comparable<ProductDto>{
 	private String user_id,product_title,write_date,update_date,product_image,product_content;
-	private int product_id,category_id,product_price,product_status,views,interest_count;
+	private int product_id,category_id,product_price,product_status,views,wish_id;
+	private int reply_count;
+	
+	@Override
+	public int compareTo(ProductDto o) { 
+			return 0;
+	}
 	
 	public void setWrite_date() {
 		Calendar cal = Calendar.getInstance();
@@ -16,6 +22,14 @@ public class ProductDto {
 		int sec = cal.get(Calendar.SECOND);
 		this.write_date = year + "-" + month + "-" + day 
 				+ " " + hour + ":" + min + ":" + sec;
+	}
+
+	public int getReply_count() {
+		return reply_count;
+	}
+
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
 	}
 
 	public int getProduct_id() {
@@ -106,12 +120,12 @@ public class ProductDto {
 		this.views = views;
 	}
 
-	public int getInterest_count() {
-		return interest_count;
+	public int getWish_id() {
+		return wish_id;
 	}
 
-	public void setInterest_count(int interest_count) {
-		this.interest_count = interest_count;
+	public void setWish_id(int wish_id) {
+		this.wish_id = wish_id;
 	}
-	
+
 }

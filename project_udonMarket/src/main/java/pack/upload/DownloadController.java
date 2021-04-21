@@ -18,8 +18,8 @@ public class DownloadController {
 	public byte[] getDownloadProcess(HttpServletResponse response,
 			@RequestParam String filename) throws IOException{
 		System.out.println("filename : "+filename);
-		File file = new File("C:\\Users\\wonh\\git\\Project\\project_udonMarket\\src\\main\\webapp\\resources\\upload\\" + filename);
-		//File file = new File("C:\\work\\sprsou\\sprweb23_upload\\src\\main\\webapp\\resources\\upload\\" + filename);
+		File file = new File("/udon/resources/upload/" + filename);
+		//File file = new File("C:\\Users\\wonh\\git\\Project\\project_udonMarket\\src\\main\\webapp\\resources\\upload\\" + filename);
 		
 		byte[] bytes = FileCopyUtils.copyToByteArray(file);
 		

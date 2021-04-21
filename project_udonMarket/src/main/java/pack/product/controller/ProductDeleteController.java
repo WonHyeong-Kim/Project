@@ -14,7 +14,7 @@ public class ProductDeleteController {
 	@Autowired
 	private ProductDaoInter productDaointer;
 	
-	@RequestMapping("product_delete")
+	@RequestMapping("productDelete")
 	public ModelAndView del(@RequestParam("product_id") int product_id) {
 		ProductDto dto = productDaointer.getProductDetail(product_id);
 		ModelAndView view = new ModelAndView();

@@ -3,6 +3,7 @@ package pack.board.model;
 import java.util.ArrayList;
 
 import pack.board.controller.BoardBean;
+import pack.user.model.UserDto;
 
 public interface BoardDaoInter {
 	ArrayList<BoardDto> getList();

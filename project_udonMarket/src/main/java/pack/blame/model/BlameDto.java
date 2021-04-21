@@ -1,7 +1,15 @@
 package pack.blame.model;
 
 public class BlameDto {
-	private String blame_id, product_id,user_id,declaration_detail,declaration_reason,blame_date;
+	private String blame_id, product_id,user_id,declaration_detail,declaration_reason,blame_date, currentBoard;
+
+	public String getCurrentBoard() {
+		return currentBoard;
+	}
+
+	public void setCurrentBoard(String currentBoard) {
+		this.currentBoard = currentBoard;
+	}
 
 	public String getBlame_id() {
 		return blame_id;

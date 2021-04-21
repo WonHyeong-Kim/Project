@@ -24,7 +24,12 @@ public class ProductDaoImpl extends SqlSessionDaoSupport implements ProductDaoIn
 	public ArrayList<ProductDto> getProductList() {
 		return (ArrayList)getSqlSession().selectList("selectProductList");
 	}
-
+	
+	@Override
+	public ArrayList<ProductDto> getSellingProductList() {
+		return (ArrayList)getSqlSession().selectList("selectSellingProduct");
+	}
+	
 	@Override
 	public ArrayList<ProductDto> getProductSearch(ProductBean bean) {
 		return (ArrayList)getSqlSession().selectList("searchProductList", bean);
@@ -43,6 +48,7 @@ public class ProductDaoImpl extends SqlSessionDaoSupport implements ProductDaoIn
 	@Override
 	public ProductDto getProductDetail(int product_id) {
 		// 글 내용보기, 글 수정 시 데이터 받아오기
+		// wishlist와 일치 정보 가져오기
 		return getSqlSession().selectOne("selectOneProduct",product_id);
 	}
 
@@ -56,7 +62,7 @@ public class ProductDaoImpl extends SqlSessionDaoSupport implements ProductDaoIn
 				return false;
 			}
 		} catch (Exception e) {
-			System.out.println("update err"+e);
+			System.out.println("productUpdate err"+e);
 			return false;
 		}
 	}
@@ -64,6 +70,8 @@ public class ProductDaoImpl extends SqlSessionDaoSupport implements ProductDaoIn
 	@Override
 	public boolean productDelete(int product_id) {
 		try {
+			//전체 댓글 먼저 삭제
+			getSqlSession().delete("deleteAllReply", product_id);
 			int result = getSqlSession().delete("deleteProductData", product_id);
 			if(result > 0) {
 				return true;
@@ -88,13 +96,13 @@ public class ProductDaoImpl extends SqlSessionDaoSupport implements ProductDaoIn
 
 	@Override
 	public int product_totalCnt() {
-		return getSqlSession().selectOne("totalCnt");
+		return getSqlSession().selectOne("totalProductCnt");
 	}
 
 	@Override
 	public boolean product_updateViews(int product_id) {
 		//상세보기 전 조회수 증가
-		int result = getSqlSession().update("updateViews",product_id);
+		int result = getSqlSession().update("updateProductViews",product_id);
 		if(result>0) {
 			return true;
 		}else {

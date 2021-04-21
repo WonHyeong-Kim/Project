@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where ${searchName} like concat('%',#{searchValue},'%')
  </select>
  
+ <select id="getMaxBoard" resultType="blameDto">
+ 	SELECT MAX(blame_id) currentBoard FROM blame
+ </select>
+ 
  <insert id="insertBlame" parameterType="blameFormBean">
  	insert into blame values(#{blame_id},#{product_id},#{user_id},#{declaration_detail},#{declaration_reason},now())
  </insert>

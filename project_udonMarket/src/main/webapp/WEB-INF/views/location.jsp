@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="pack.user.model.UserDto"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>우동 | 내 위치</title>
+	<title>우동 | 내 근처</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<style>
 	    .map_wrap {position:relative;width:100%;height:350px;}
@@ -12,15 +13,47 @@
 	    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 	    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
 	    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+	    .titleSpan{color: white; font-size: 14px; font-family: 'Noto Sans KR', sans-serif;
+	    }
 	</style>
 </head>
-<body">
-	<jsp:include page="../../top.jsp"></jsp:include>
-	<br><br><br><br><br>
-	<div class="container" style="height: 650px; background-color:#95c4de; ">
+<body>
+	<!-- msg 있으면 띄우도록 -->
+	<% String msg = (String)session.getAttribute("msg"); 
+		if(msg != null){%>
+			<script type="text/javascript">
+				alert("<%=msg%>");
+			</script>
+			<%session.setAttribute("msg",null);
+		}%>
+	<jsp:include page="./top.jsp"></jsp:include>
+	<br><br>
+	<h2 class="ft_title center" style="padding-top:50px">내 근처</h2>
+	<br><br><br>
+	<div class="container" style="height: 670px; background-color:#95c4de; border-radius: 10px;">
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8" style="text-align: center;">
+				<form action="locationSave" method="post" name="lform">			
+				<span class="titleSpan">현재위치 :</span> 
+				<input type="text" name="user_addr" size="22px" readonly>
+				<span class="titleSpan">위도 :</span>
+			  	<input type="text" name="GPS_latitude" size="13px" readonly>
+			  	<span class="titleSpan">경도 :</span>
+				<input type="text" name="GPS_longitude" size="13px" readonly>
+				<%
+		  			UserDto userDto = (UserDto)session.getAttribute("userDto");
+			  		if(userDto != null){
+		  		%>
+			  		<input type="submit" class="btn btn-primary" value="내 위치 저장하기"><!-- 로그인 안되있으면 안보여야함 -->
+			  	<%} %>
+				</form>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
 		<br>
 		<div class="map_wrap">
-		    <div id="map" style="width:100%;height:600px;position:relative;overflow:hidden;"></div>
+		    <div id="map" style="width:100%;height:600px;position:relative;overflow:hidden; border: solid 3px white;"></div>
 		    <div class="hAddr">
 		        <span class="title">지도중심기준 행정동 주소정보</span>
 		        <span id="centerAddr"></span>
@@ -29,7 +62,8 @@
 		<!-- 
 		<div id="map" style="width:500px;height:400px;"></div>
 		 -->
-	</div>
+	</div><br><br><br>
+	<jsp:include page="./bottom.jsp"></jsp:include>
 	<!-- kaka map library -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=37fbf7425a9a292b0593b520f7bee3ed&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript">
@@ -55,6 +89,8 @@
 		        
 		        var lat = position.coords.latitude, // 위도
 		        lon = position.coords.longitude; // 경도
+		        document.lform.GPS_latitude.value = lat; // 위도 input 태그에 write
+		        document.lform.GPS_longitude.value = lon; // 경도 input 태그에 write
 		        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		            message = '<div style="padding:5px;">현재위치 입니다.</div>'; // 인포윈도우에 표시될 내용입니다
 		            //console.log(lat+" "+lon);
@@ -141,11 +177,12 @@
 		function displayCenterInfo(result, status) {
 		    if (status === kakao.maps.services.Status.OK) {
 		        var infoDiv = document.getElementById('centerAddr');
-
+				
 		        for(var i = 0; i < result.length; i++) {
 		            // 행정동의 region_type 값은 'H' 이므로
 		            if (result[i].region_type === 'H') {
 		                infoDiv.innerHTML = result[i].address_name;
+		                document.lform.user_addr.value = result[i].address_name; // 위치 정보 input 태그에 write
 		                break;
 		            }
 		        }

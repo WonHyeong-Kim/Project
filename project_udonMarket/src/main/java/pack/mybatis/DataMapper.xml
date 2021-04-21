@@ -68,12 +68,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <!-- 상품 게시판 start-->
-	  <!-- 전체 검색 -->
+	  <!-- 전체 검색 + 게시글 댓글수 -->
 	 <select id="selectProductList" resultType="product_dto">
-	  	select * from product order by write_date desc
+	  	SELECT *, (SELECT COUNT(*) FROM product_reply WHERE product_id=p.product_id) AS reply_count, 
+		(SELECT wish_id FROM wishlist WHERE product_id=p.product_id) AS wish_id 
+		from product p order by write_date desc
 	 </select>
 	 
-	 <!-- 카워드 검색 -->
+	 <!-- 거래완료 안보기 -->
+	 <select id="selectSellingProduct" resultType="product_dto">
+	  	SELECT *,(SELECT COUNT(*) FROM product_reply WHERE product_id=p.product_id) AS reply_count,
+	  	(SELECT wish_id FROM wishlist WHERE product_id=p.product_id) AS wish_id 
+	  	from product p 
+	  	where product_status not in(2)
+	  	order by write_date desc
+	 </select>
+	 
+	 <!-- 키워드 검색 -->
 	 <select id="searchProductList" parameterType="product_formBean" resultType="product_dto">
 	  	select * from product 
 	  	where ${searchName_Product} like concat('%',#{searchValue_Product},'%') 
@@ -89,17 +100,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <insert id="insertProductData" parameterType="product_formBean">
 	 	insert into product 
 	 	values(#{product_id},#{user_id},#{category_id},#{product_title},
-	 	#{write_date}, #{product_price}, #{update_date},#{product_image},0,0,0,#{product_content})
+	 	#{write_date}, #{product_price}, #{update_date},#{product_image},0,0,#{product_content})
 	 </insert>
 	 
 	 <update id="updateProductData" parameterType="product_formBean">
 	 	update product 
-	 	set board_title=#{board_title},product_content=#{product_content}
+	 	set product_title=#{product_title},product_content=#{product_content},
+	 	product_price=#{product_price},product_status=#{product_status}
 	 	where product_id=#{product_id}
 	 </update>
 	 
 	 <delete id="deleteProductData" parameterType="integer">
 	 	delete from product where product_id=#{product_id}
+	 </delete>
+	 
+	  <!-- 해당 상품글 댓글 전체 삭제 (해당 상품글 삭제하는용)-->
+    <delete id="deleteAllReply" parameterType="integer">
+	 	delete from product_reply where product_id=#{product_id}
 	 </delete>
 	 
 	 <!--  maxnum -->
@@ -116,9 +133,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	update product set views=views + 1 
 	 	where product_id=#{product_id}
 	 </update>
-<!-- 상품 게시판 end -->
- <!-- 회원 관리-->
- <!-- 아이디 중복검사 -->
+	<!-- 상품 게시판 end -->
+ 	<!-- 회원 관리-->
+ 	<!-- 아이디 중복검사 -->
 	<select id="check_id" resultType="int" parameterType="String">
 	select count(*) from user where user_id = #{user_id}
 	</select> 
